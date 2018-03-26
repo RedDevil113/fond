@@ -1,0 +1,436 @@
+@import "vars"
+
+@media only screen and (max-width : 1040px)
+	.content
+		padding: 0 10px 40px
+		&-header
+			padding: 60px 10px 38px
+		&-tabs__block 
+			div
+				&:first-child
+					padding-right: 0
+		&-message__bottom
+			padding: 10px
+
+
+@media only screen and (max-width : 880px)
+	.wrapper
+		margin: 0
+	.sidebar
+		position: relative
+		padding: 0
+		&-menu
+			z-index: 102
+			position: fixed
+			top: 82px
+			background: #fff
+			right: -320px
+			opacity: 0
+			visibility: hidden
+			width: 100%
+			max-width: 320px
+			padding: 0 25px
+			transition: .2s linear
+			box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.1)
+			&__open
+				opacity: 1
+				visibility: visible
+				right: 0
+			ul
+				padding: 35px 0
+				border-top: 1px solid #f2f5f9
+		&-logo,&-bottom
+			display: none
+	.content
+		padding: 0 20px 40px 20px
+		margin: 0
+		&-header
+			padding: 110px 20px 38px
+	.header
+		display: flex
+	.menu-bar
+		display: block
+	.footer
+		display: block
+	.about-tabs__menu
+		bottom: -16px
+
+@media only screen and (max-width : 800px)
+	.applications-table
+		box-shadow: none
+		&__header
+			display: none
+		&__content
+			background: transparent
+		&__col
+			padding-right: 0
+			margin: 0 auto 25px
+			max-width: 500px
+			padding-bottom: 10px
+			box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.1)
+			&-last
+				height: 30px
+				width: 30px!important
+				top: 8px
+				right: 10px
+			&-1
+				display: flex
+				flex-flow: row wrap
+				background: rgb(226, 235, 247)
+				padding: 15px!important
+				margin-bottom: 10px
+				span,p
+					color: #485f7d
+					font-weight: bold
+					margin-right: 10px
+			div
+				width: 100%
+				padding: 5px 15px
+				border: none
+				span
+					display: inline-block
+					color: #728bad
+	.modal-paymentAll
+		&__table,&__bottom
+			max-width: 500px
+			margin: 0 auto 20px
+		&__bottom
+			padding: 0 10px
+		&__header
+			display: none
+		&__col
+			border: none
+			padding-bottom: 10px
+			div
+				border: none
+				width: 100%
+				padding: 5px 15px
+				input
+					max-width: 100px
+					height: 30px
+				p
+					color: #728bad
+				span
+					display: inline-block
+			&-2
+				background: #e2ebf7
+				margin-bottom: 10px
+				order: -1
+				span
+					color: #485f7d
+					margin-right: 5px
+					font-weight: bold
+			&-5
+				display: flex
+				align-items: center
+				flex-flow: row wrap
+				justify-content: space-between
+
+@media only screen and (max-width : 720px)
+	.content
+		&-header
+			&__title
+				font-size: 18px
+		&-tabs
+			&__block
+				padding: 0
+				div
+					padding: 15px 5px
+	.accrual-table
+		box-shadow: none
+		&__header
+			display: none
+		&__content
+			background: transparent
+			div
+				display: block
+				width: 100%
+				span
+					display: block
+					color: #90a1b8
+					text-align: left
+		&__col
+			margin-bottom: 30px
+			padding-bottom: 10px
+			background: #fff
+			border: none
+			box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.1)
+			&-1
+				background: #e2ebf7
+				margin-bottom: 10px
+				padding: 12px 15px!important
+				p
+					font-weight: bold
+			div
+				border: none
+				display: flex
+				flex-flow: row nowrap
+				justify-content: space-between
+				align-items: center
+				padding: 6px 15px
+				p
+					margin: 0
+					width: auto
+			&-6
+				display: block!important
+				text-align: right!important
+				padding: 6px 11px!important
+	.content-message__header
+		margin-bottom: 20px
+		ul
+			display: block
+			padding-bottom: 20px
+			border-bottom: 1px solid #dee5ee
+			li 
+				padding: 0 0 5px 0
+				&::after
+					display: none
+	.payment-table
+		box-shadow: none
+		&__header
+			display: none
+		&__content
+			background: none
+		&__col
+			padding-right: 0
+			margin-bottom: 25px
+			background: #fff
+			padding-bottom: 10px
+			box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.1)
+			div
+				width: 100%
+				padding: 6px 15px
+				border: none
+				p
+					span
+						display: inline-block
+						margin-right: 3px
+			&-3
+				order: -1
+				background: #e2ebf7
+				margin-bottom: 10px
+				padding: 10px 15px!important
+				p
+					span
+						font-weight: bold
+						color: #485f7d
+			&-last
+				top: 10px
+				max-width: 50px
+				transform: translate(0%,0%)
+	.bills-table
+		margin: 0 auto
+		box-shadow: none
+		&__header
+			display: none
+		&__content
+			background: none
+		&__col
+			padding-right: 0
+			margin-bottom: 25px
+			background: #fff
+			padding-bottom: 10px
+			box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.1)
+			div
+				width: 100%
+				padding: 6px 15px
+				border: none
+				p
+					span
+						display: inline-block
+						margin-right: 3px
+			&-1
+				background: #e2ebf7
+				margin-bottom: 10px
+				padding: 9px 15px!important
+				order: -2
+				p
+					span
+						font-weight: bold
+						color: #485f7d
+			&-3
+				order: -1
+				div
+					max-width: 300px
+					padding: 0
+			&-4
+				display: none!important
+			&-last
+				top: 9.5px
+				right: 15px
+				left: auto
+				width: auto!important
+	.payment-table__col-last 
+		max-width: 20px
+		ul li:first-child
+			display: none
+
+@media only screen and (max-width : 590px)
+	.content
+		&-header
+			flex-flow: column wrap
+			padding-bottom: 30px
+			&__name
+				padding-top: 23px
+				.backward
+					display: none
+			&__title
+				font-size: 14px
+			&__info
+				order: -1
+				justify-content: space-between
+				padding-bottom: 23px
+				border-bottom: 1px solid #dee5ee
+				p
+					span
+						display: block
+		&-header__bell-wrap
+			top: -20px
+			padding-top: 15px
+		&-tabs
+			margin-bottom: 16px
+			&__menu
+				margin-bottom: 9px
+				li
+					width: 33.333%
+					text-align: center
+					span
+						display: none
+					img
+						margin: 0 auto
+			&__block
+				padding: 8px 0
+				&.tab-block__active
+					display: block
+				div
+					width: 100%
+					text-align: left
+					padding: 12px 18px
+		&-title
+			font-size: 16px
+		&-info
+			padding: 25px 0
+			div
+				width: 100%
+				padding-top: 0
+				padding-bottom: 0
+		&-news
+			display: block
+			div
+				width: 100%
+				padding-bottom: 20px
+	.counter-table
+		margin-bottom: 0
+		box-shadow: none
+		&__content
+			background: transparent
+		&__header
+			display: none
+		&__col
+			margin-bottom: 22px
+			border: none
+			display: block
+			background: #fff
+			padding-bottom: 10px
+			box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.1)
+			&-first
+				background: #e2ebf7
+				padding: 15px!important
+				margin-bottom: 10px
+			div
+				border: none
+				width: 100%
+				justify-content: space-between
+				padding: 5px 15px
+				input
+					max-width: 100px
+				span
+					display: block
+					color: #90a1b8
+				p
+					width: auto
+					margin: 0
+					font-weight: bold
+	.content-message__bottom
+		div
+			textarea
+				height: 140px
+			.message-submit
+				position: relative
+				height: 40px
+				width: 100%
+	.payment-all
+		.modal-content
+			padding: 40px 0 30px
+	.modal-title
+		font-size: 18px
+	.personal-account
+		.modal-content
+			padding: 40px 20px 30px
+	.content-message
+		padding-bottom: 0
+		&__bottom
+			position: static
+			padding-top: 120px
+
+@media only screen and (max-width : 530px)
+	.content-payment__header a
+		width: 100%
+		margin: 0 0 10px
+		text-align: center
+
+@media only screen and (max-width : 490px)
+	.modal
+		&-content
+			padding: 40px 15px 30px
+			.modal-submit
+				position: absolute
+				bottom: 0
+				left: 0
+				width: 100%
+				text-align: center
+	.content
+		&-header__bell-wrap
+			width: 100%
+			position: fixed
+			top: 100px
+			right: auto
+			left: 0
+		&-info
+			div
+				span
+					display: block
+	.send
+		text-align: center
+		a 
+			width: 100%
+	.personal-account__info p span
+		display: block
+	.modal-rejected
+		.modal-content
+			padding-bottom: 80px
+	.modal-successfully
+		.modal-content
+			padding-bottom: 70px
+		&__info
+			background: none
+			& > div
+				display: block
+				margin: 0
+				div
+					width: 100%
+					margin-bottom: 10px
+					text-align: center!important
+					p span
+						text-align: center!important
+			p
+				span
+					width: 100%
+					text-align: left!important
+					padding: 0!important
+	.content-payment__header a,.credentials-bottom a
+		width: 100%
+		text-align: center
+	.credentials-input
+		margin-right: 0
+		max-width: 100%

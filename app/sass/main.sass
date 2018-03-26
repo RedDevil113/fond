@@ -1,0 +1,1565 @@
+@import "fonts"
+@import "libs"
+@import "vars"
+
+*::-webkit-input-placeholder
+	color: #99a8bd
+	font-size: 12px
+
+*:-moz-placeholder
+	color: #99a8bd
+	font-size: 12px
+
+*::-moz-placeholder
+	color: #99a8bd
+	font-size: 12px
+
+*:-ms-input-placeholder
+	color: #99a8bd
+	font-size: 12px
+
+body input:focus:required:invalid,
+body textarea:focus:required:invalid
+	border-color: red
+body input:required:valid,
+body textarea:required:valid
+	border-color: green
+
+* 
+	margin: 0
+	padding: 0
+	box-sizing: border-box
+	outline: none
+
+a, a:hover, a:focus, a:active, a:visited
+	text-decoration: none
+	transition: .3s linear
+
+li 
+	list-style: none
+
+html
+	overflow-x: hidden
+
+body
+	font-size: 12px
+	line-height: 1.3
+	font-family: $SFUITextBold
+	overflow-x: hidden
+	color: #485f7d
+	text-rendering: optimizeLegibility
+	-webkit-font-smoothing: antialiased
+	background: #eff2f7
+
+img
+	max-width: 100%
+	height: auto
+
+.wrapper
+	max-width: 1280px
+	margin: 0 0 0 244px
+	position: relative
+	background: #eff2f7
+	min-height: 100vh
+	&-overlay
+		position: absolute
+		top: 0
+		left: 0
+		width: 100%
+		height: 100%
+		background: #eff2f7
+		z-index: 99
+		opacity: 0
+		visibility: hidden
+		transition: .2s linear
+		&__open
+			opacity: .8
+			visibility: visible
+
+/* -- modal -- */
+
+.modal
+	width: 100%
+	max-width: 582px
+	padding: 30px
+	position: fixed
+	top: 50%
+	left: 50%
+	z-index: 99999
+	transform: translate(-50%,-50%) scale(0.2)
+	visibility: hidden
+	opacity: 0
+	overflow-y: auto
+	max-height: 800px
+	height: 100%
+	transition: all 0.3s
+	&::-webkit-scrollbar
+		width: 1px
+		background-image: transparent
+		background: transparent
+	&::-moz-scrollbar
+		width: 1px
+		background-image: transparent
+		background: transparent
+	&::-ms-scrollbar
+		width: 1px
+		background-image: transparent
+		background: transparent
+	&::-o-scrollbar
+		width: 1px
+		background-image: transparent
+		background: transparent
+	&-content
+		max-width: 582px
+		padding: 40px 40px 30px
+		background: #fff
+		position: relative
+	&-title
+		text-align: center
+		margin-bottom: 26px
+		font-size: 24px
+		font-weight: bold
+		color: #485f7d
+	&-input
+		position: relative
+		margin-bottom: 20px
+		&::after
+			content: ''
+			background: url(../img/dot-3.png)
+			width: 18px
+			height: 4px
+			background-size: contain
+			background-repeat: no-repeat
+			position: absolute
+			top: 50%
+			right: 25px
+			height: 4px
+			transform: translate(0,-50%)
+		select
+			width: 100%
+			height: 44px
+			border: none
+			background-color: rgb(242, 245, 249)
+			padding: 5px 16px
+			color: #5494fe
+			font-weight: bold
+			cursor: pointer
+			-webkit-appearance: none
+		  -moz-appearance: none
+		  appearance: none
+	textarea
+		width: 100%
+		height: 163px
+		background-color: rgb(242, 245, 249)
+		border: none
+		resize: none
+		padding: 15px 20px
+		margin-bottom: 15px
+		font-size: 13px
+	&-bottom
+		display: flex
+		flex-flow: row wrap
+		justify-content: space-between
+		align-items: center
+		&__download
+			position: relative
+			input
+				opacity: 0
+				position: absolute
+				top: 0
+				left: 0
+				width: 100%
+				height: 100%
+			span
+				color: #448aff
+				text-decoration: underline
+				font-weight: bold
+				display: block
+				margin-bottom: 15px
+				&:hover
+					text-decoration: none
+		p
+			color: #90a1b8
+		&__left
+			margin-bottom: 20px
+		&__right
+			.modal-submit
+				font-weight: bold
+				color: #fff
+				display: inline-block
+				padding: 13px 45px
+				background: rgb(68, 138, 255)
+	&.open
+		visibility: visible
+		opacity: 1
+		transform: translate(-50%,-50%) scale(1)
+
+.modal-submit:hover
+	background: #82b1ff!important
+
+.cancel
+	background-color: rgb(255, 82, 82)
+	box-shadow: 0px 12px 17px 0px rgba(255, 82, 82, 0.2)
+	position: absolute
+	width: 45px
+	height: 45px
+	border-radius: 50%
+	right: -20px
+	top: 30px
+	transform: translate(-50%,-50%)
+	cursor: pointer
+	display: flex
+	z-index: 100
+	img
+		margin: auto
+
+.modal-overlay
+	position: fixed
+	width: 100%
+	height: 100%
+	visibility: hidden
+	opacity: 0
+	top: 0
+	left: 0
+	z-index: 1000
+	background: #eff2f7
+	opacity: 0
+	transition: all 0.3s
+	&.open-overlay
+		visibility: visible
+		opacity: .8
+
+/* -- header -- */
+.header
+	display: none
+	flex-flow: row nowrap
+	justify-content: space-between
+	align-items: center
+	position: fixed
+	top: 0
+	left: 0
+	width: 100%
+	height: 82px
+	background: #fff
+	z-index: 102
+	padding: 20px 23px
+	&-hidden
+		z-index: 98
+	&-title
+		font-weight: bold
+		color: #485f7d
+		text-transform: uppercase
+
+/* -- bar -- */
+.menu-bar span, .menu-bar span:before, .menu-bar span:after
+	display: block
+	height: 3px
+	width: 30px
+	position: absolute
+	top: 50%
+	margin-top: -1.5px
+	left: 50%
+	margin-left: -15px
+	background: #448aff
+
+.menu-bar
+	width: 30px
+	height: 30px
+	z-index: 1000
+	cursor: pointer
+	display: none
+	position: relative
+	span
+		&:after
+			content: ''
+			transition: all .2s ease
+			margin-top: 6px
+		&:before
+			content: ''
+			transition: all .2s ease
+			margin-top: -9px
+
+.open-menu
+	.menu-bar
+		span
+			background: transparent
+			&:after
+				transform: rotate(-135deg)
+				margin-top: 0
+			&:before
+				transform: rotate(135deg)
+				margin-top: 0
+
+/* -- sidebar -- */
+.sidebar
+	width: 244px
+	position: fixed
+	top: 0
+	left: 0
+	height: 100%
+	background: #fff
+	padding: 32px 40px 40px
+	box-shadow: 5px 0 8px 0 rgba(0,0,0,.05)
+	z-index: 100
+	&-bottom
+		position: absolute
+		bottom: 40px
+		max-width: 155px
+		left: 40px
+		p
+			color: #dee5ee
+			line-height: 1.5
+	&-logo
+		margin-bottom: 15px
+	&-menu
+		ul
+			li 
+				padding: 16.5px 0
+				a 
+					text-transform: uppercase
+					font-size: 12px
+					color: #90a1b8
+					display: block
+					position: relative
+					padding: 0 23px
+					b 
+						position: relative
+						font-weight: normal
+					&::after
+						content: ''
+						position: absolute
+						top: 50%
+						left: 0
+						border-radius: 50%
+						background: transparent
+						transition: .2s linear
+						width: 6px
+						height: 6px
+						margin-top: -3px
+					span
+						position: absolute
+						top: 50%
+						right: -30px
+						width: 20px
+						margin-top: -10px
+						height: 20px
+						border-radius: 50%
+						background: #448aff
+						border-radius: 50%
+						color: #fff
+						line-height: 20px
+						font-weight: bold
+						text-align: center
+				&.menu-active,&:hover
+					a
+						color: #448aff
+						&::after
+							background: #448aff
+
+/* -- content -- */
+.content
+	padding: 0 48px 40px 48px
+	height: 100%
+	min-height: 90vh
+	&-header
+		padding: 60px 48px 38px
+		display: flex
+		flex-flow: row nowrap
+		justify-content: space-between
+		position: fixed
+		top: 0
+		left: 244px
+		width: 100%
+		z-index: 99
+		background: #eff2f7
+		div
+			display: flex
+			flex-flow: row wrap
+			align-items: center
+		&__name
+			a 
+				margin-right: 22px
+		&__title
+			font-weight: bold
+			font-size: 24px
+			color: #485f7d
+		&__info
+			p
+				color: #90a1b8
+				margin-right: 48px
+				font-size: 12px
+				span
+					color: #ff5252
+		&__bell
+			display: block
+			position: relative
+			&-wrap
+				position: absolute
+				top: -65px
+				background: #fff
+				right: -48px
+				width: 325px
+				padding: 65px 48px 40px 43px
+				opacity: 0
+				visibility: hidden
+				transition: .2s linear
+				z-index: 100
+				&__open
+					opacity: 1
+					visibility: visible
+			&-title
+				font-size: 18px
+				color: #a1afc3
+			&-header
+				padding-bottom: 23px
+				display: block
+				width: 100%
+			&-info
+				div
+					border-top: 1px solid #afbbcc
+					padding: 21px 0 27px 20px
+					position: relative
+					&::after
+						content: ''
+						position: absolute
+						border-radius: 50%
+						width: 6px
+						height: 6px
+						background: #90a1b8
+						top: 27px
+						left: 3px
+					span
+						color: #a0b0c6
+						font-weight: bold
+					p
+						color: #485f7d
+						line-height: 1.5
+						margin: 0
+					&.color
+						&-red
+							&::after
+								background: #ff5252
+							p
+								color: #ff5252
+						&-orange
+							&::after
+								background: #ff9800
+							p
+								color: #ff9800
+	&-tabs
+		margin-bottom: 35px
+		&__menu
+			display: flex
+			flex-flow: row nowrap
+			li 
+				display: flex
+				flex-flow: row nowrap
+				align-items: center
+				padding: 
+				transition: .2s linear
+				cursor: pointer
+				background: #82b1ff
+				padding: 13px 27px 12px 22px
+				border-right: 1px solid #fff
+				span
+					color: #fff
+				img
+					margin-right: 10px
+					display: none
+					&.tabs-img__2
+						display: block
+				&:hover,&.tabs-menu__active
+					background: #fff
+					span
+						color: #485f7d
+					img
+						display: none
+						&.tabs-img__1
+							display: block
+		&__block
+			flex-flow: row nowrap
+			background: #fff
+			padding-right: 40px
+			box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.1)
+			div
+				width: 25%
+				text-align: right
+				padding: 23px 18px 20px 18px
+				&:first-child
+					padding-right: 40px
+				p
+					color: #90a1b8
+					padding-bottom: 7px
+					font-weight: bold
+				span
+					font-weight: bold
+					color: #485f7d
+				b
+					font-weight: bold
+					color: #ff5252
+					span
+						color: #fff
+						background: #ff5252
+						width: 18px
+						height: 18px
+						text-align: center
+						border-radius: 50%
+						display: inline-block
+						line-height: 1.5
+						margin-right: 12px
+			&.tab-block__active
+				display: flex
+	&-title
+		font-size: 24px
+		color: #485f7d
+		font-weight: bold
+		margin-bottom: 15px
+	&-info
+		display: flex
+		flex-flow: row wrap
+		background: #fff
+		margin-bottom: 40px
+		box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.1)
+		div
+			width: 50%
+			padding: 24px 17px 14px
+			p
+				font-weight: bold
+				color: #485f7d
+				margin-bottom: 9px
+				span,a
+					font-weight: normal
+					color: #90a1b8
+					margin-right: 5px
+	&-news
+		display: flex
+		flex-flow: row nowrap
+		div
+			padding: 0 10px 0 18px
+			position: relative
+			width: 33.333%
+			&::after
+				content: ''
+				position: absolute
+				background: #9faec1
+				width: 3px
+				height: 12px
+				top: 0
+				left: 0
+			span
+				color: #90a1b8
+				display: block
+				margin-bottom: 10px
+			a 
+				color: #448aff
+				text-decoration: none
+				max-width: 240px
+				display: inline-block
+				&:hover
+					text-decoration: underline
+			p
+				color: #485f7d
+				padding-top: 10px
+				line-height: 1.5
+				max-width: 265px
+	&-text
+		padding: 15px 0 20px
+		p
+			line-height: 1.5
+			color: #485f7d
+			max-width: 830px
+
+.accrual-table
+	box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.1)
+	&__header
+		display: flex
+		flex-flow: row nowrap
+		background: #e2ebf7
+		border-bottom: 1px solid #ccdff7
+		&-col
+			padding: 
+			display: flex
+			text-align: center
+			padding: 13px 5px
+			border-right: 1px solid #ccdff7
+			p
+				margin: auto
+				color: #485f7d
+				font-weight: bold
+			&__1
+				width: 17.5%
+			&__2
+				width: 19%
+			&__3
+				width: 19.5%
+			&__4
+				width: 11.8%
+			&__5
+				width: 11.8%
+	&__content
+		background: #fff
+		& > div
+			display: flex
+			flex-flow: row wrap
+	&__col
+		border-bottom: 1px solid #f2f5f9
+		&:last-child
+			border: none
+		div
+			border-right: 1px solid #f2f5f9
+			display: flex
+			flex-flow: row wrap
+			text-align: right
+			padding: 14px 20px 14px 10px
+			p
+				color: #728bad
+				margin: auto 0
+				width: 100%
+			span
+				display: none
+		&-1
+			width: 17.5%
+			text-align: center!important
+		&-2
+			width: 19%
+		&-3
+			width: 19.5%
+		&-4
+			width: 11.8%
+		&-5
+			width: 11.8%
+		&-6
+			width: 20.4%
+			text-align: center!important
+			padding: 10px 2px!important
+			border: none!important
+			a 
+				line-height: 1
+				margin: 2px 4px
+				color: #485f7d
+				border: 1px solid #485f7d
+				display: inline-block
+				padding: 3px 8px
+				&:hover
+					color: #fff
+					background: #485f7d
+				&.accrual-button__green
+					border-color: #7cb342
+					color: #7cb342
+					&:hover
+						color: #fff
+						background: #7cb342
+
+.counter-table
+	margin-bottom: 26px
+	box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.1)
+	&__header
+		display: flex
+		flex-flow: row wrap
+		background: #e2ebf7
+		div
+			width: 33.333%
+			text-align: center
+			border-right: 1px solid #ccdff7
+			padding: 13px 5px
+			p
+				font-weight: bold
+				color: #485f7d
+	&__content
+		background: #fff
+	&__col
+		text-align: right
+		display: flex
+		flex-flow: row wrap
+		border-bottom: 1px solid #f2f5f9
+		&:last-child
+			border: none
+		div
+			width: 33.333%
+			border-right: 1px solid #f2f5f9
+			padding: 6px 7px
+			display: flex
+			align-items: center
+			text-align: right
+			&:last-child
+				border: none
+			input
+				box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.15)
+				background-color: rgb(242, 245, 249)
+				height: 31px
+				width: 100%
+				display: block
+				text-align: right
+				border: none
+				font-size: 12px
+				color: #728bad
+				padding: 5px 13px
+		span
+			display: none
+		p
+			color: #728bad
+			width: 100%
+		&-first
+			text-align: center!important
+			p
+				margin: auto
+
+.tab-block
+	display: none
+	&__active
+		display: block
+
+.warning-block
+	padding: 22px 17px
+	background: #ff5252
+	margin-bottom: 27px
+	p
+		color: #fff
+		line-height: 1.5
+	&__border
+		padding: 21px 17px
+		border: 1px solid #ff5252
+		margin-bottom: 15px
+		p
+			color: #ff5252
+			line-height: 1.5
+
+.send
+	text-align: right
+	a 
+		color: #fff
+		background: #82b1ff
+		display: inline-block
+		padding: 9px 19px
+		&:hover
+			background: #448aff
+
+.notice
+	position: relative
+	padding-right: 12px
+	z-index: 101
+	span
+		position: absolute
+		top: -32%
+		right: 1px
+		width: 20px
+		height: 20px
+		border-radius: 50%
+		background: #ff5252
+		border-radius: 50%
+		color: #fff
+		line-height: 20px
+		font-weight: bold
+		text-align: center
+
+.footer
+	display: none
+	padding: 0 20px 20px
+	text-align: center
+	p
+		max-width: 150px
+		margin: 0 auto
+		color: #c6d1e1
+
+.applications-table
+	margin-bottom: 40px
+	box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.1)
+	&__header
+		display: flex
+		flex-flow: row wrap
+		padding-right: 45px
+		background: #e2ebf7
+		div
+			padding: 15px 17px
+			border-right: 1px solid #ccdff7
+			p
+				font-weight: bold
+				color: #485f7d
+		&-1
+			width: 13.3%
+		&-2
+			width: 18%
+		&-3
+			width: 18.2%
+		&-4
+			width: 26%
+		&-5
+			width: 24.5%
+	&__content
+		background: #fff
+	&__col
+		border-top: 1px solid #f2f5f9
+		display: flex
+		flex-flow: row wrap
+		background: #fff
+		padding-right: 45px
+		position: relative
+		&-1
+			width: 13.3%
+		&-2
+			width: 18%
+		&-3
+			width: 18.2%
+		&-4
+			width: 26%
+		&-5
+			width: 24.5%
+		&-last
+			position: absolute
+			top: 0
+			right: 0
+			width: 45px
+			height: 100%
+			padding: 0!important
+			display: flex
+			border: none!important
+			b,img
+				margin: auto
+			b
+				border-radius: 50%
+				background-color: rgb(68, 138, 255)
+				width: 20px
+				height: 20px
+				color: #fff
+				font-weight: bold
+				text-align: center
+				line-height: 1.7
+		div
+			padding: 14px 17px
+			border-right: 1px solid #f2f5f9
+			p
+				color: #728bad
+			span
+				display: none
+
+.add-plus
+	display: flex
+	margin: 0 auto
+	width: 44px
+	height: 44px
+	background-color: rgb(130, 177, 255)
+	border-radius: 50%
+	box-shadow: 0px 12px 17px 0px rgba(130, 177, 255, 0.4)
+	transition: .2s linear
+	&:hover
+		opacity: .8
+	img
+		margin: auto
+
+.content-message
+	min-height: 630px
+	position: relative
+	padding-bottom: 120px
+	&__header
+		margin-bottom: 55px
+		ul
+			display: flex
+			max-width: 680px
+			width: 100%
+			li 
+				color: #485f7d
+				font-weight: bold
+				position: relative
+				padding-right: 90px
+				&::after
+					content: ''
+					position: absolute
+					top: 50%
+					right: 30px
+					height: 1px
+					width: 35px
+					background: rgb(72, 95, 125)
+				&:last-child
+					padding-right: 0
+					&::after
+						display: none
+	&__wrap
+		display: flex
+		flex-flow: column wrap
+	&__text
+		width: 100%
+		max-width: 520px
+		margin-bottom: 20px
+		p
+			color: #99a8bd
+			text-align: right
+			span
+				color: #485f7d
+				font-weight: bold
+		div
+			width: 100%
+			max-width: 500px
+			margin-top: 15px
+			padding: 15px 24px 20px
+			box-shadow: 0px 15px 26px 0px rgba(68, 138, 255, 0.35)
+			position: relative
+			&::after
+				content: ''
+				position: absolute
+				top: -11px
+				border: 6px solid transparent
+			p
+				line-height: 1.5
+				text-align: left
+			span
+				font-weight: normal
+				color: #90baff
+			a 
+				color: #448aff
+				text-decoration: none
+				&:hover
+					text-decoration: underline
+	&__you 
+		align-self: flex-end
+		padding-left: 20px
+		div
+			background: #fff
+			box-shadow: 0px 6px 16px 0px rgba(#000 , 0.15)
+			&::after
+				right: 0
+				border-right: 6px solid #fff
+				border-bottom: 6px solid #fff
+			p
+				color: #90a1b8
+	&__admin
+		padding-right: 20px
+		p
+			text-align: left
+		div
+			background: #448aff
+			&::after
+				left: 0
+				border-left: 6px solid #448aff
+				border-bottom: 6px solid #448aff
+			p
+				color: #fff
+	&__bottom
+		position: fixed
+		width: 100%
+		bottom: 0
+		left: 244px
+		padding: 10px 48px
+		background: #eff2f7
+		div
+			position: relative
+			textarea
+				width: 100%
+				background-color: rgb(255, 255, 255)
+				display: block
+				border: none
+				height: 90px
+				resize: none
+				padding: 8px 110px 8px 23px
+				color: #485e7d
+				font-size: 13px
+				&:-moz-placeholder
+					color: #485e7d
+					font-size: 13px
+				&::-webkit-input-placeholder
+					color: #485e7d
+					font-size: 13px
+				&:-ms-input-placeholder
+					color: #485e7d
+					font-size: 13px
+				&::-moz-placeholder
+					color: #485e7d
+					font-size: 13px
+			.message-submit
+				position: absolute
+				right: 0
+				top: 0
+				height: 100%
+				background-color: rgb(220, 228, 237)
+				width: 100px
+				color: #99a8bd
+				border: none
+				transition: .2s linear
+				cursor: pointer
+				&:hover
+					color: #fff
+					background: #448aff
+
+.payment-all
+	max-width: 1088px
+	.modal-content
+		max-width: 1028px
+
+.modal-paymentAll
+	&__table
+		background: #fff
+		box-shadow: 0px 12px 17px 0px rgba(226, 235, 247, 0.4)
+		margin-bottom: 25px
+	&__img
+		display: flex
+		align-items: center
+		margin-bottom: 10px
+		img
+			margin-right: 10px
+	&__bottom
+		display: flex
+		flex-flow: row wrap
+		justify-content: space-between
+		div:last-child
+			text-align: right
+		&-input
+			position: relative
+			width: 12px
+			height: 12px
+			border-radius: 50%
+			border: 1px solid #448aff
+			&::after
+				content: ''
+				position: absolute
+				top: 50%
+				left: 50%
+				background: transparent
+				transition: .2s
+				width: 6px
+				height: 6px
+				border-radius: 50%
+				margin: -3px 0 0 -3px
+			input
+				position: absolute
+				top: 0
+				left: 0
+				width: 100%
+				height: 100%
+				opacity: 0
+				cursor: pointer
+			&__checked
+				&::after
+					background: #448aff
+		p
+			margin-bottom: 25px
+			color: #91a3be
+			display: flex
+			flex-flow: row nowrap
+			align-items: center
+			label
+				padding-left: 5px
+				color: #448aff
+				cursor: pointer
+			span
+				font-weight: bold
+				color: #485f7d
+		.modal-submit
+			color: #fff
+			background: #448aff
+			display: inline-block
+			padding: 13px 55px
+	&__header
+		display: flex
+		flex-flow: row wrap
+		background: #e2ebf7
+		&-1
+			width: 24.8%
+		&-2
+			width: 14.5%
+		&-3
+			width: 22.6%
+		&-4
+			width: 18.2%
+		&-5
+			width: 19.9%
+			border: none!important
+		div
+			border-right: 1px solid #ccdff7
+			padding: 11px 15px
+			display: flex
+			p
+				margin: auto 0
+				font-weight: bold
+				color: #485f7d
+	&__col
+		border-top: 1px solid #f2f5f9
+		display: flex
+		flex-flow: row wrap
+		div
+			padding: 7px 17px
+			border-right: 1px solid #f2f5f9
+			display: flex
+			span
+				display: none
+			p
+				margin: auto 0
+			input
+				background-color: rgb(242, 245, 249)
+				box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.15)
+				width: 100%
+				height: 31px
+				border: none
+				color: #728bad
+				text-align: right
+				padding: 5px 10px
+		&-1
+			width: 24.8%
+		&-2
+			width: 14.5%
+		&-3
+			width: 22.6%
+		&-4
+			width: 18.2%
+		&-5
+			width: 19.9%
+			border: none!important
+
+.personal-account
+	max-width: 642px
+	&__block
+		margin-bottom: 20px
+		padding: 15px
+		background: #f2f5f9
+		p
+			color: #485f7d
+			span
+				margin-right: 5px
+				font-weight: normal
+				color: #5594fe
+	&__info
+		padding: 15px 20px 10px
+		margin-bottom: 20px
+		border: 1px solid #c9d1de
+		p
+			margin-bottom: 5px
+			font-weight: bold
+			color: #485f7d
+			span
+				color: #91a3be
+				font-weight: normal
+	&__input
+		margin-bottom: 20px
+		display: flex
+		flex-flow: row nowrap
+		align-items: center
+		p
+			margin: 0 5px 0 0
+			white-space: nowrap
+		input
+			background-color: rgb(242, 245, 249)
+			box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.15)
+			width: 100%
+			max-width: 160px
+			height: 31px
+			border: none
+			color: #728bad
+			text-align: right
+			padding: 5px 10px
+
+.modal-rejected
+	&__info
+		margin-bottom: 25px
+		border: 1px solid #ff5252
+		padding: 23px 25px
+		p
+			color: #ff5252
+			display: flex
+			align-items: center
+			img
+				margin-right: 18px
+	&__ok
+		text-align: right
+		a 
+			font-weight: bold
+			color: #fff
+			display: inline-block
+			padding: 15px 75px
+			background: rgb(68, 138, 255)
+
+.modal-successfully
+	&__info
+		background: #f2f5f9
+		padding: 20px 10px 25px
+		& > div
+			display: flex
+			align-items: center
+			margin-bottom: 10px
+			div
+				width: 50%
+				p
+					span
+						display: block
+						width: 100%!important
+						text-align: left!important
+						padding: 0!important
+				&:first-child
+					text-align: right
+					padding-right: 12px
+				&:last-child
+					padding-left: 12px
+		p
+			margin-bottom: 5px
+			span
+				display: inline-block
+				width: 50%
+				&:first-child
+					text-align: right
+					padding-right: 12px
+				&:last-child
+					padding-left: 12px
+	&__bottom
+		display: flex
+		flex-flow: row wrap
+		justify-content: space-between
+		align-items: center
+		margin-top: 15px
+		ul
+			display: flex
+			flex-flow: row wrap
+			align-items: center
+			li
+				margin-right: 25px
+		.modal-submit
+			font-weight: bold
+			color: #fff
+			display: inline-block
+			padding: 15px 60px
+			background: rgb(68, 138, 255)
+
+.content-payment
+	&__header
+		a 
+			color: #fff
+			background: #82b1ff
+			display: inline-block
+			padding: 14px 18px
+			font-weight: bold
+			margin: 0 15px 15px 0
+			&:hover
+				background: #4f8cf1
+
+.payment-table
+	box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.1)
+	&__header
+		display: flex
+		flex-flow: row wrap
+		padding-right: 90px
+		background: #e2ebf7
+		&-1
+			width: 17.8%
+		&-2
+			width: 27.2%
+		&-3
+			width: 14.6%
+		&-4
+			width: 15%
+		&-5
+			width: 25.4%
+			border: none!important
+		div
+			border-right: 1px solid #ccdff7
+			padding: 14px 19px
+			display: flex
+			p
+				margin: auto 0
+				font-weight: bold
+				color: #485f7d
+	&__content
+		background: #fff
+	&__col
+		padding-right: 90px
+		border-top: 1px solid #f2f5f9
+		display: flex
+		flex-flow: row wrap
+		position: relative
+		background: #fff
+		div
+			padding: 15px 17px
+			border-right: 1px solid #f2f5f9
+			display: flex
+		&-1
+			width: 17.8%
+		&-2
+			width: 27.2%
+		&-3
+			width: 14.6%
+		&-4
+			width: 15%
+		&-5
+			width: 25.4%
+			border: none!important
+		&-last
+			position: absolute
+			top: 50%
+			right: 10px
+			transform: translate(0%,-50%)
+			padding: 0!important
+			border: none!important
+			width: 60px
+			ul
+				display: flex
+				width: 100%
+				flex-flow: row nowrap
+				justify-content: space-between
+				align-items: center
+		p
+			color: #728bad
+			span
+				display: none
+
+.color-red p
+	color: #ff5252
+	span
+		color: #728bad
+
+.bills-table
+	margin-bottom: 35px
+	box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.1)
+	&__header
+		display: flex
+		flex-flow: row wrap
+		padding-right: 45px
+		background: #e2ebf7
+		&-1
+			width: 13.3%
+		&-2
+			width: 23.8%
+		&-3
+			width: 26%
+		&-4
+			width: 16%
+		&-5
+			width: 20.9%
+		div
+			border-right: 1px solid #ccdff7
+			padding: 14px 19px
+			display: flex
+			p
+				margin: auto 0
+				font-weight: bold
+				color: #485f7d
+	&__content
+		background: #fff
+	&__col
+		padding-right: 45px
+		border-top: 1px solid #f2f5f9
+		display: flex
+		flex-flow: row wrap
+		position: relative
+		background: #fff
+		div
+			padding: 15px 10px 15px 17px
+			border-right: 1px solid #f2f5f9
+			display: flex
+		&-1
+			width: 13.3%
+		&-2
+			width: 23.8%
+		&-3
+			width: 26%
+			flex-flow: column wrap
+			div
+				padding: 0
+				border: none
+				display: block
+				p
+					margin-bottom: 7px
+					color: #ff9800
+					display: flex
+					align-items: center
+					img
+						margin-left: 5px
+				input
+					margin-bottom: 15px
+					width: 100%
+					background-color: rgb(242, 245, 249)
+					box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.15)
+					height: 31px
+					border: none
+					padding: 5px 8px
+					&:focus
+						&:-moz-placeholder
+							color: transparent
+						&::-webkit-input-placeholder
+							color: transparent
+						&:-ms-input-placeholder
+							color: transparent
+						&::-moz-placeholder
+							color: transparent
+		&-4
+			width: 16%
+		&-5
+			width: 20.9%
+			a 
+				display: inline-block
+				padding: 1px 5px
+				border: 1px solid #7cb342
+				color: #7cb342
+				&:hover
+					background: #7cb342
+					color: #fff
+		&-last
+			position: absolute
+			top: 15px
+			right: 15px
+			padding: 0!important
+			border: none!important
+			ul
+				display: flex
+				width: 100%
+				flex-flow: row nowrap
+				justify-content: space-between
+				align-items: center
+		p
+			color: #728bad
+			span
+				display: none
+	&__submit
+		display: inline-block
+		background: #c2cbd8
+		color: #fff
+		padding: 9px 11px
+		&:hover
+			background: #448aff
+
+.credentials
+	&-block
+		padding-bottom: 32px
+		p
+			margin-bottom: 12px
+			color: #448aff
+		&__wrap
+			display: flex
+			flex-flow: row wrap
+			align-items: center
+			a
+				color: #99a8bd
+				text-decoration: none
+				&:hover
+					text-decoration: underline
+				&.color-orange
+					color: #ff9800
+	&-input
+		position: relative
+		max-width: 338px
+		width: 100%
+		margin-right: 18px
+		margin-bottom: 10px
+		input
+			background: #fff
+			width: 100%
+			height: 44px
+			padding: 5px 18px
+			font-size: 12px
+			color: #485f7d
+			border: none
+		img
+			position: absolute
+			transform: translate(0,-50%)
+			top: 50%
+			right: 15px
+	&-bottom
+		a
+			display: inline-block
+			padding: 13px 50px
+			color: #fff
+			font-weight: bold
+			margin: 0 15px 15px 0
+			&:last-child
+				margin-right: 0
+	&-close
+		background: #ff5252
+		&:hover
+			background: #de2b2b
+	&-submit
+		background: #c2cbd8
+		&:hover
+			background: #448aff
+			
+.phone,.email
+	&-hidden
+		padding: 24px 0 0
+		display: none
+		&__open
+			display: block
+		p
+			color: #90a1b8
+			margin-bottom: 6px
+		span
+			a
+				color: #448aff
+				text-decoration: none
+				margin-right: 5px
+				&:hover
+					text-decoration: underline
+		&__wrap
+			display: flex
+			flex-flow: row nowrap
+			align-items: center
+			margin-bottom: 9px
+			input
+				max-width: 140px
+				width: 100%
+				height: 31px
+				background: #fff
+				color: #000
+				margin: 0 12px
+				padding: 5px
+			p
+				margin: 0
+			a
+				display: inline-block
+				padding: 7px 8px
+				color: #fff
+				font-weight: bold
+				background: #c2cbd8
+				&:hover
+					background: #448aff
+
+.email-hidden
+	display: block
+	&__radio
+		padding-bottom: 5px
+		p
+			display: flex
+			flex-flow: row wrap
+			align-items: center
+			cursor: pointer
+			label
+				margin-left: 5px
+			&.label-active label
+				color: #448aff
+		p
+			margin-bottom: 7px
+
+.link-str
+	position: absolute
+	top: 0
+	left: 0
+	width: 100%
+	height: 100%
+	opacity: 0
+	z-index: 1
+
+.bills-table__col,.accrual-table__col,.counter-table__col,.applications-table__col,.payment-table__col,.modal-paymentAll__col
+	transition: .2s linear
+	position: relative
+	&:hover
+		background: #fbfbfb
+	a,input,ul
+		z-index: 2
+	div
+		a,input,ul
+			z-index: 3
+	p a
+		z-index: 3
+		position: relative
+
+.bills-table__col
+	&-3 div
+		z-index: 2
+	&-last
+		z-index: 2
+
+.applications-table__col
+	&-last
+		z-index: 2
+
+.payment-table__col
+	&-last
+		z-index: 2
+
+.accrual-table__col-6
+	a 
+		position: relative
+
+@import "_media"
